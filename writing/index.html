@@ -2,139 +2,521 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="why i don't completely trust ai-generated code — thoughts on ai-assisted development, code drift, and developer judgment."
+  >
+  <title>why i don't completely trust ai-generated code | karen chu</title>
 
-  <title>Technical Writing | Karen Chu</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5efea;
-      color: #333333;
-      line-height: 1.6;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .back-link {
-      color: #555555;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-
-    header {
-      margin: 48px 0;
-    }
-
-    .eyebrow {
-      color: #a76d76;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 8px 0 16px;
-      font-size: 3rem;
-      line-height: 1.15;
-    }
-
-    .intro {
-      max-width: 620px;
-      font-size: 1.15rem;
-      color: #666666;
-    }
-
-    .article-card {
-      background: #ffffff;
-      border: 1px solid #eadbdd;
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 8px 30px rgba(80, 50, 55, 0.06);
-    }
-
-    .tag {
-      display: inline-block;
-      background: #f9dde0;
-      color: #704b50;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    h2 {
-      margin: 20px 0 12px;
-      font-size: 1.7rem;
-      line-height: 1.3;
-    }
-
-    .description {
-      color: #666666;
-    }
-
-    .coming-soon {
-      color: #a76d76;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      margin-top: 60px;
-      color: #888888;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
   <main>
+    <div class="article-page">
+      <!-- back link -->
+      <a href="../" class="back-link">
+        ← back home
+      </a>
+      <!-- article header -->
+      <header class="article-header">
+        <p class="section-label">
+          ai-assisted development
+        </p>
+        <h1>
+          why i don't completely trust ai-generated code
+        </h1>
+        <p class="article-subtitle">
+          ai coding tools can make development much faster — but when an
+          implementation starts drifting from the original requirement,
+          knowing when to stop matters just as much as knowing what to prompt.
+        </p>
+      </header>
+      <!-- article body -->
+      <article class="article-content">
 
-    <a class="back-link" href="/">← Karen Chu</a>
+        <p>
+          ai coding tools can be incredibly useful.
+        </p>
 
-    <header>
-      <div class="eyebrow">Technical Writing</div>
+        <p>
+          the appeal is obvious: tasks that used to take significantly longer
+          can sometimes be completed much faster, and an ai agent can help you
+          write code, debug problems, understand an unfamiliar codebase, or
+          get an idea off the ground.
+        </p>
 
-      <h1>Ideas on building better software.</h1>
+        <p>
+          but faster doesn't always mean better.
+        </p>
 
-      <p class="intro">
-        Practical notes on AI-assisted development, developer experience,
-        and building reliable software.
-      </p>
-    </header>
+        <p>
+          as i've worked with ai-assisted development, i've noticed a recurring
+          problem: an ai agent doesn't always understand what you're actually
+          trying to accomplish.
+        </p>
 
-    <article class="article-card">
+        <p>
+          it might understand the code in front of it. it might understand the
+          prompt you gave it. but that doesn't necessarily mean it understands
+          the business logic behind a requirement, the context surrounding it,
+          or why you chose a particular approach in the first place.
+        </p>
 
-      <h2>When Your AI Coding Agent Loses the Plot</h2>
+        <p>
+          and that's where things can start to drift.
+        </p>
 
-      <p class="description">
-        What happens when an AI coding agent starts iterating away from
-        the original requirement—and how developers can recognize and
-        recover from the loop.
-      </p>
 
-      <p class="coming-soon">Coming soon ✦</p>
+        <h2>when a simple task stops being simple</h2>
 
-    </article>
+        <p>
+          one behavior i've noticed with ai coding tools is their tendency to
+          overengineer.
+        </p>
+
+        <p>
+          you might start with a relatively simple requirement. the agent
+          proposes a solution, you test it, and something doesn't work quite
+          right.
+        </p>
+
+        <p>
+          so you ask it to fix the problem.
+        </p>
+
+        <p>
+          it makes another change.
+        </p>
+
+        <p>
+          that change introduces another issue, so you ask it to fix that too.
+        </p>
+
+        <p>
+          after a few rounds of this, you can end up surprisingly far away
+          from the problem you originally wanted to solve.
+        </p>
+
+        <p>
+          instead of stopping to question an earlier assumption, the agent may
+          continue trying to make the current implementation work. more state
+          gets introduced. more conditions appear. logic that wasn't part of
+          the original requirement starts creeping in.
+        </p>
+
+        <p>
+          eventually, you aren't really solving the original problem anymore.
+          you're solving problems created by the previous solutions.
+        </p>
+
+        <p>
+          that's usually my signal to stop.
+        </p>
+
+
+        <h2>a small example</h2>
+
+        <p>
+          let's start with a deliberately simple requirement:
+        </p>
+
+        <blockquote>
+          disable a submit button while a request is running, then re-enable
+          it when the request finishes.
+        </blockquote>
+
+        <p>
+          we really only need one piece of state:
+        </p>
+
+        <pre><code>let isSubmitting = false;
+
+async function submitForm() {
+  if (isSubmitting) return;
+
+  isSubmitting = true;
+  updateButton();
+
+  try {
+    await fakeRequest();
+    console.log("submitted successfully");
+  } catch (error) {
+    console.error("submission failed", error);
+  } finally {
+    isSubmitting = false;
+    updateButton();
+  }
+}</code></pre>
+
+        <p>
+          <code>isSubmitting</code> represents exactly what we need to know.
+          while the request is running, it's <code>true</code>. when the
+          request finishes — whether it succeeds or fails — the
+          <code>finally</code> block resets it.
+        </p>
+
+        <p>
+          now imagine that the first implementation doesn't behave quite how
+          we expect.
+        </p>
+
+        <p>
+          we ask an ai agent to fix it. then we ask it to handle another issue.
+          then another.
+        </p>
+
+        <p>
+          instead of returning to the original requirement, each new change
+          builds on the previous implementation.
+        </p>
+
+        <p>
+          eventually, our simple submission state might start looking
+          something like this:
+        </p>
+
+        <pre><code>let isSubmitting = false;
+let requestFailed = false;
+let retryCount = 0;
+let buttonDisabled = false;
+
+async function submitForm() {
+  if (buttonDisabled) return;
+
+  isSubmitting = true;
+  buttonDisabled = true;
+  updateButton();
+
+  try {
+    await fakeRequest();
+
+    requestFailed = false;
+    retryCount = 0;
+  } catch (error) {
+    requestFailed = true;
+    retryCount++;
+
+    if (retryCount &lt; 3) {
+      buttonDisabled = false;
+    }
+
+    console.error("submission failed", error);
+  }
+
+  if (!requestFailed) {
+    isSubmitting = false;
+  }
+
+  if (requestFailed && retryCount &gt;= 3) {
+    buttonDisabled = false;
+    isSubmitting = false;
+  }
+
+  updateButton();
+}</code></pre>
+
+        <p>
+          now we're keeping track of four different pieces of state:
+        </p>
+
+        <ul>
+          <li><code>isSubmitting</code></li>
+          <li><code>requestFailed</code></li>
+          <li><code>retryCount</code></li>
+          <li><code>buttonDisabled</code></li>
+        </ul>
+
+        <p>
+          we've also introduced retry behavior that wasn't part of the
+          requirement.
+        </p>
+
+        <p>
+          the code isn't necessarily more sophisticated because it's longer.
+          we've just accumulated logic while trying to fix each new problem
+          individually.
+        </p>
+
+        <p>
+          this is the kind of moment where i think it's important for the
+          developer to interrupt the loop.
+        </p>
+
+
+        <h2>stop and go back to the requirement</h2>
+
+        <p>
+          when i notice this happening, one of the most useful things i can do
+          is stop looking at the latest error for a moment and re-read the
+          original requirement.
+        </p>
+
+        <p>
+          what am i actually trying to accomplish?
+        </p>
+
+        <p>
+          what is the simplest behavior the code needs to support?
+        </p>
+
+        <p>
+          which parts of the current implementation are actually necessary?
+        </p>
+
+        <p>
+          in our example, the requirement hasn't changed.
+        </p>
+
+        <p>
+          we still just need to know whether the request is currently running.
+        </p>
+
+        <p>
+          so instead of asking the agent for another fix, we can remove the
+          unnecessary state and return to something much simpler:
+        </p>
+
+        <pre><code>let isSubmitting = false;
+
+async function submitForm() {
+  if (isSubmitting) return;
+
+  isSubmitting = true;
+  updateButton();
+
+  try {
+    await fakeRequest();
+    console.log("submitted successfully");
+  } catch (error) {
+    console.error("submission failed", error);
+  } finally {
+    isSubmitting = false;
+    updateButton();
+  }
+}</code></pre>
+
+        <p>
+          sometimes recovering from ai drift doesn't require a better prompt
+          or another generated solution.
+        </p>
+
+        <p>
+          sometimes it means recognizing that we've gone in the wrong direction
+          and simplifying.
+        </p>
+
+
+        <h2>give the agent direction</h2>
+
+        <p>
+          another thing i've found helpful is not always asking the ai agent
+          to figure everything out from scratch.
+        </p>
+
+        <p>
+          if i already have an idea of how something should be structured, i
+          can give it that structure.
+        </p>
+
+        <p>
+          that might mean providing:
+        </p>
+
+        <ul>
+          <li>a small code skeleton</li>
+          <li>constraints the implementation needs to follow</li>
+          <li>existing patterns it should preserve</li>
+          <li>the expected behavior</li>
+          <li>things it explicitly should not change</li>
+        </ul>
+
+        <p>
+          this gives the agent a clearer direction instead of leaving it to
+          make assumptions about what i want.
+        </p>
+
+        <p>
+          and when an agent does make an assumption, i think it's important to
+          catch it early.
+        </p>
+
+        <p>
+          otherwise, you can end up in an endless back-and-forth where each
+          prompt is trying to correct the result of the previous prompt.
+        </p>
+
+
+        <h2>knowing when to stop prompting</h2>
+
+        <p>
+          i think this is one of the more important skills when coding with ai.
+        </p>
+
+        <p>
+          when something isn't working, the instinct can be to immediately send
+          another prompt:
+        </p>
+
+        <blockquote>
+          "that didn't work. fix it."
+        </blockquote>
+
+        <p>
+          and then:
+        </p>
+
+        <blockquote>
+          "now this is broken."
+        </blockquote>
+
+        <p>
+          and then:
+        </p>
+
+        <blockquote>
+          "go back and fix this too."
+        </blockquote>
+
+        <p>
+          but there comes a point where another prompt isn't necessarily the
+          most productive next step.
+        </p>
+
+        <p>
+          some signals i watch for are:
+        </p>
+
+        <ul>
+          <li>
+            the same files are being modified repeatedly without resolving
+            the problem
+          </li>
+
+          <li>
+            each fix introduces another issue
+          </li>
+
+          <li>
+            the implementation is becoming much more complicated than the
+            requirement
+          </li>
+
+          <li>
+            new behavior is being added that i never asked for
+          </li>
+
+          <li>
+            the agent is making assumptions about how the system should work
+          </li>
+
+          <li>
+            i'm spending more time correcting generated code than understanding
+            or solving the original problem
+          </li>
+        </ul>
+
+        <p>
+          when that happens, i'd rather stop, inspect the current state myself,
+          and decide what should actually stay.
+        </p>
+
+
+        <h2>ai still needs an engineer</h2>
+
+        <p>
+          none of this makes me less interested in ai-assisted development.
+        </p>
+
+        <p>
+          i use these tools because they're useful.
+        </p>
+
+        <p>
+          they can accelerate repetitive work, help explore unfamiliar code,
+          suggest implementations, explain errors, and make it much faster to
+          iterate on an idea.
+        </p>
+
+        <p>
+          but i don't think the developer's role disappears when an ai agent
+          starts writing the code.
+        </p>
+
+        <p>
+          if anything, judgment becomes more important.
+        </p>
+
+        <p>
+          someone still needs to understand the requirement.
+        </p>
+
+        <p>
+          someone still needs to recognize when the implementation is becoming
+          unnecessarily complicated.
+        </p>
+
+        <p>
+          someone still needs to question the assumptions being made.
+        </p>
+
+        <p>
+          and someone still needs to know when it's time to stop generating and
+          change direction.
+        </p>
+
+        <p>
+          for me, the best way to use ai coding tools isn't to hand over the
+          entire development process. it's to treat them as a very capable
+          collaborator — one that can move quickly, but still needs direction.
+        </p>
+
+        <p class="article-ending">
+          ai can generate a lot of possible answers very quickly.
+          <br>
+          the developer still has to decide whether we're solving the right
+          problem.
+        </p>
+
+
+        <!-- repo link -->
+        <div class="article-repo-card">
+
+          <p class="section-label">
+            example code
+          </p>
+
+          <h3>ai-agent-drift-demo</h3>
+
+          <p>
+            view the original, drifted, and recovered TypeScript examples
+            used in this article.
+          </p>
+
+          <a
+            href="https://github.com/karen-chu/ai-agent-drift-demo"
+            class="text-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            view the example on github →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
 
     <footer>
-      © Karen Chu
+      <p>waving my magic wand ✨</p>
     </footer>
 
   </main>
+
 </body>
+
 </html>

@@ -29,8 +29,8 @@
           why i don't completely trust ai-generated code
         </h1>
         <p class="article-subtitle">
-          ai coding tools can make development much faster — but when an
-          implementation starts drifting from the original requirement,
+          ai coding tools can make development much faster; however, when an
+          implementation starts deviating from the original requirement,
           knowing when to stop matters just as much as knowing what to prompt.
         </p>
       </header>
@@ -140,15 +140,10 @@ async function submitForm() {
   isSubmitting = true;
   updateButton();
 
-  try {
-    await fakeRequest();
-    console.log("submitted successfully");
-  } catch (error) {
-    console.error("submission failed", error);
-  } finally {
-    isSubmitting = false;
-    updateButton();
-  }
+  await fakeRequest();
+
+  isSubmitting = false;
+  updateButton();
 }</code></pre>
 
         <p>

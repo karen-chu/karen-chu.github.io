@@ -147,30 +147,33 @@ async function submitForm() {
 }</code></pre>
 
         <p>
-          <code>isSubmitting</code> represents exactly what we need to know.
-          while the request is running, it's <code>true</code>. when the
-          request finishes — whether it succeeds or fails — the
-          <code>finally</code> block resets it.
+          <code>isSubmitting</code> represents what we need to know, and that's whether a request is currently running.
+          while the request is running, it's <code>true</code>, and once the request
+          finishes, we set it back to <code>false</code>.
         </p>
 
         <p>
-          now imagine that the first implementation doesn't behave quite how
-          we expect.
+          there's one problem though. if <code>fakeRequest()</code> throws an error,
+          execution stops before <code>isSubmitting</code> gets reset. our button
+          could stay disabled even though the request is no longer running.
         </p>
 
         <p>
-          we ask an ai agent to fix it. then we ask it to handle another issue.
-          then another.
+          this is exactly the kind of bug i might ask an agent to help fix.
         </p>
 
         <p>
-          instead of returning to the original requirement, each new change
-          builds on the previous implementation.
+          the agent proposes a solution that maybe fixes the original problem, but
+          introduces another edge case. we prompt it again, but another issue appears,
+          and we prompt it yet again.
         </p>
 
         <p>
-          eventually, our simple submission state might start looking
-          something like this:
+          instead of stepping back and reconsidering the structure of the original
+          implementation, each new change can start building on the last one...
+        </p>
+        <p>
+          eventually, a simple submission state might start looking something like this:
         </p>
 
         <pre><code>let isSubmitting = false;
